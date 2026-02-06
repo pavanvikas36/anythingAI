@@ -13,10 +13,15 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+  origin: [
+    "http://localhost:5173", // local dev
+    "https://anything-ai-frontend-three.vercel.app" // deployed frontend
+  ],
+  credentials: true
 }));
+
 app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
